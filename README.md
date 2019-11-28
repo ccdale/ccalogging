@@ -36,13 +36,11 @@ Sends log output to a file
 
 #### parameters:
 
-  `fqfn`: the fully qualified path name of the log file
-
-  `fformat`: message format - defaults to:
-    `"%(asctime)s [%(levelname)-5.5s]  %(message)s"`
-
-  `datefmt`: date format - defaults to:
-    `"%d/%m/%Y %H:%M:%S"`
+> `fqfn`: the fully qualified path name of the log file
+>
+> `fformat`: message format - defaults to: `"%(asctime)s [%(levelname)-5.5s]  %(message)s"`
+>
+> `datefmt`: date format - defaults to: `"%d/%m/%Y %H:%M:%S"`
 
 ### setConsoleOut()
 Sends log output to the console
