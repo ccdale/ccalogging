@@ -34,7 +34,7 @@ Sets the global loglevel to be logging.ERROR
 ### setLogFile(fqfn)
 Sends log output to a file
 
-#### parameters:
+  parameters:
 
   `fqfn`: the fully qualified path name of the log file
 
@@ -45,7 +45,7 @@ Sends log output to a file
 ### setConsoleOut()
 Sends log output to the console
 
-#### parameters:
+  parameters:
 
   `STDOUT`: if `True` send to `stdout` - defaults to False (`stderr`)
 
