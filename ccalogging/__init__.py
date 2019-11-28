@@ -56,6 +56,6 @@ def setConsoleOut(STDOUT=False, cformat="%(asctime)s [%(levelname)-5.5s]  %(mess
 log = logging.getLogger("ccalogging")
 majorv = 0
 minorv = 3
-buildv = 1
+buildv = 2
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]

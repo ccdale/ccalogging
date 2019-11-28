@@ -1,6 +1,17 @@
 # CCA Logging
 Easy python logging module
 
+## Installing
+```
+# install into users system site-packages
+pip install ccalogging --user
+```
+
+```
+# install into a virtual environment
+pip install ccalogging
+```
+
 ## Usage
 Import this module, set logging output, optionally set logging level,
 set a script level variable pointing to this modules `log` variable,
