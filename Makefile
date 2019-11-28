@@ -17,7 +17,7 @@ ifeq ($(strip $(VIRTUAL_ENV)),)
 	pip install . --user
 else
 	@echo "installing into a virtual environment is not supported"
-	@echo "use: `make dev` for that"
+	@echo "use: 'make dev' for that"
 endif
 
 dist:
