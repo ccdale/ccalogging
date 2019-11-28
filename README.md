@@ -14,11 +14,11 @@ script level variable to `ccalogging.log`.
 ```
 # first (or only) project file
 
-import ccalogging
+import ccalogging          # import the module
 
-ccalogging.setConsoleOut()
-ccalogging.setDebug()
-log = ccalogging.log
+ccalogging.setConsoleOut() # set global logging destination
+ccalogging.setDebug()      # set global log level
+log = ccalogging.log       # point a script-level variable to the logger
 
 log.info("Logging has been started")
 ```
@@ -26,9 +26,9 @@ log.info("Logging has been started")
 ```
 # subsequent project files
 
-import ccalogging
+import ccalogging    # import the module
 
-log = ccalogging.log
+log = ccalogging.log # point a script-level variable to the logger
 
 log.debug("continuing to log to the same location as setup in the first file")
 ```
