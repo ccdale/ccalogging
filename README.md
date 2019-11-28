@@ -2,15 +2,21 @@
 Easy python logging module
 
 ## Usage
-Import this module as a unique name, set a script level variable pointing to
-this modules `log` variable, then issue log.info() etc.
+Import this module, set logging output, optionally set logging level,
+set a script level variable pointing to this modules `log` variable,
+then issue log.debug() etc.
+
+You only need to set the output destination and logging level once, so
+if you have multiple files in your project, set the output destination
+and the logging level in the first one.  In all the others just point a
+script level variable to `ccalogging.log`.
 
 ```
-import ccalogging as LOG
+import ccalogging
 
-LOG.setConsoleOut()
-LOG.setDebug()
-log = LOG.log
+ccalogging.setConsoleOut()
+ccalogging.setDebug()
+log = ccalogging.log
 
 log.info("Logging has been started")
 ```
