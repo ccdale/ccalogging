@@ -2,7 +2,7 @@
 Easy python logging module
 
 ## Installing
-Install from https://pypi.org/project/ccalogging/
+[Install from pypi](https://pypi.org/project/ccalogging/)
 ```
 # install into users system site-packages
 pip install ccalogging --user
@@ -11,6 +11,19 @@ pip install ccalogging --user
 ```
 # install into a virtual environment
 pip install ccalogging
+```
+
+```
+# as part of your own package, add to setup.py
+setup(
+    ...,
+    install_requires=[
+        '...',
+        'ccalogging',
+        '...',
+        ],
+    ...,
+)
 ```
 
 ## Usage
