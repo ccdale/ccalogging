@@ -5,6 +5,10 @@ $(SRC):
 tags:
 	ctags -R
 
+clean:
+	rm -rf dist
+	rm -rf chaim_cli.egg-info
+
 dev:
 ifeq ($(strip $(VIRTUAL_ENV)),)
 	@echo "You need to be in a virtual environment"
@@ -20,7 +24,7 @@ else
 	@echo "use: 'make dev' for that"
 endif
 
-dist:
+dist: clean
 ifeq ($(strip $(VIRTUAL_ENV)),)
 	@echo "You need to be in a virtual environment"
 else
