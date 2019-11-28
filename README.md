@@ -11,6 +11,11 @@ if you have multiple files in your project, set the output destination
 and the logging level in the first one.  In all the others just point a
 script level variable to `ccalogging.log`.
 
+When using a log file, if the file already exists, new log messages are appended
+to it.
+
+The default logging level is WARNING.
+
 ```
 # first (or only) project file
 
@@ -30,7 +35,7 @@ import ccalogging    # import the module
 
 log = ccalogging.log # point a script-level variable to the logger
 
-log.debug("continuing to log to the same location as setup in the first file")
+log.warning("continuing to log to the same location as setup in the first file")
 ```
 
 ## Options
@@ -44,7 +49,8 @@ Sets the global loglevel to be logging.DEBUG
 Sets the global loglevel to be logging.INFO
 
 ### setWarn()
-Sets the global loglevel to be logging.WARNING
+Sets the global loglevel to be logging.WARNING.
+This is the default level, if you don't set a level.
 
 ### setError()
 Sets the global loglevel to be logging.ERROR
