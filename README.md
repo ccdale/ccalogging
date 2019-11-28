@@ -2,6 +2,7 @@
 Easy python logging module
 
 ## Installing
+Install from https://pypi.org/project/ccalogging/
 ```
 # install into users system site-packages
 pip install ccalogging --user
