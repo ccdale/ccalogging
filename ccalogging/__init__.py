@@ -22,6 +22,7 @@ import logging
 import os
 import shutil
 import sys
+import time
 
 
 def setDebug():
@@ -78,7 +79,10 @@ def setConsoleOut(
 
 
 def doRotation(fqfn, rotation):
-    if rotation:
+    now = time.time()
+    mtime = os.path.getmtime(fqfn)
+    # rotate if existing log file is older than one day
+    if mtime < (now - 86400):
         home = os.path.expanduser("~/")
         logd = os.path.join(home, "log")
         based = logd if os.path.dirname(fqfn) == "" else os.path.dirname(fqfn)
@@ -112,6 +116,6 @@ def rotateNext(logd, basefn, xnext):
 log = logging.getLogger("ccalogging")
 majorv = 0
 minorv = 4
-buildv = 0
+buildv = 1
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]
