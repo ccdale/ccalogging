@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018, Centrica Hive Ltd.
+# Copyright (c) 2018, Chris Allison
 #
 #     This file is part of ccalogging.
 #
@@ -17,31 +17,54 @@
 #     along with ccalogging.  If not, see <http://www.gnu.org/licenses/>.
 #
 """python module for easy logging"""
-import sys
+import gzip
 import logging
+import os
+import shutil
+import sys
+
 
 def setDebug():
     log.setLevel(logging.DEBUG)
 
+
 def setInfo():
     log.setLevel(logging.INFO)
+
 
 def setWarn():
     log.setLevel(logging.WARNING)
 
+
 def setError():
     log.setLevel(logging.ERROR)
 
-def setLogFile(fqfn, fformat="%(asctime)s [%(levelname)-5.5s]  %(message)s", datefmt="%d/%m/%Y %H:%M:%S"):
+
+def setLogFile(
+    fqfn,
+    fformat="%(asctime)s [%(levelname)-5.5s]  %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+    rotation=None,
+):
     """
     sets log output to go to a file
+
+    rotation argument if present, will cause the file to be rotated
+    keeping the number of days specified in the argument
     """
+    if rotation:
+        doRotation(fqfn, rotation)
     ffmt = logging.Formatter(fformat, datefmt=datefmt)
     fileH = logging.FileHandler(fqfn)
     fileH.setFormatter(ffmt)
     log.addHandler(fileH)
 
-def setConsoleOut(STDOUT=False, cformat="%(asctime)s [%(levelname)-5.5s]  %(message)s", datefmt="%d/%m/%Y %H:%M:%S"):
+
+def setConsoleOut(
+    STDOUT=False,
+    cformat="%(asctime)s [%(levelname)-5.5s]  %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+):
     """
     sets log output to goto the console (stderr by default)
     """
@@ -53,9 +76,42 @@ def setConsoleOut(STDOUT=False, cformat="%(asctime)s [%(levelname)-5.5s]  %(mess
     consH.setFormatter(cfmt)
     log.addHandler(consH)
 
+
+def doRotation(fqfn, rotation):
+    if rotation:
+        home = os.path.expanduser("~/")
+        logd = os.path.join(home, "log")
+        based = logd if os.path.dirname(fqfn) == "" else os.path.dirname(fqfn)
+        basefn = os.path.basename(fqfn)
+        while rotation > 0:
+            rotateNext(based, basefn, rotation)
+            rotation -= 1
+        # rotation should now be 0
+        # all files will have 'moved up' by one
+        # leaving {fqfn}.1.gz not existing
+        # copy the fqfn file to {fqfn}.1.gz
+        # compressing on the way through
+        with open(fqfn, "rb") as ifn:
+            with gzip.open(f"{fqfn}.1.gz", "wb") as ofn:
+                shutil.copyfileobj(ifn, ofn)
+        # now truncate the {fqfn} file
+        with open(fqfn, "w") as ifn:
+            pass
+
+
+def rotateNext(logd, basefn, xnext):
+    srcfn = os.path.join(logd, basefn, f".{xnext}.gz")
+    if os.path.exists(srcfn):
+        xnext = xnext + 1
+        destfn = os.path.join(logd, basefn, f".{xnext}.gz")
+        if os.path.exists(destfn):
+            os.unlink(destfn)
+        os.rename(srcfn, destfn)
+
+
 log = logging.getLogger("ccalogging")
 majorv = 0
-minorv = 3
-buildv = 3
+minorv = 4
+buildv = 0
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]
