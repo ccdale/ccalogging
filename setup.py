@@ -24,7 +24,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='ccalogging',
+    name="ccalogging",
     version=v,
     author="Chris Allison",
     author_email="chris.charles.allison+ccalogging@gmail.com",
@@ -32,12 +32,12 @@ setup(
     description="python module for easy logging",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    packages=find_packages(exclude=['docs', 'tests*']),
-    python_requires='>=3',
-    classifiers=(
-        'Development Status :: 4 - Beta',
+    packages=find_packages(exclude=["docs", "tests*"]),
+    python_requires=">=3",
+    classifiers=[
+        "Development Status :: 4 - Beta",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
         "Operating System :: OS Independent",
-    ),
+    ],
 )
