@@ -91,6 +91,9 @@ Sends log output to a file
 
   `datefmt`: date format - defaults to: `"%d/%m/%Y %H:%M:%S"`
 
+  `rotation`: default: None - set this to the number of days to keep the log file for
+                              older logs will be compressed and numbered (up to this value)
+
 ### setConsoleOut()
 Sends log output to the console
 
