@@ -17,12 +17,12 @@
 #     along with ccalogging.  If not, see <http://www.gnu.org/licenses/>.
 #
 """python module for easy logging"""
+from datetime import date, timedelta
 import gzip
 import logging
 import os
 import shutil
 import sys
-import time
 
 
 def setDebug():
@@ -79,10 +79,11 @@ def setConsoleOut(
 
 
 def doRotation(fqfn, rotation):
-    now = time.time()
     mtime = os.path.getmtime(fqfn)
+    fdate = date.fromtimestamp(mtime)
+    xdate = date.today()
     # rotate if existing log file is older than one day
-    if mtime < (now - 86400):
+    if fdate.day != xdate.day:
         home = os.path.expanduser("~/")
         logd = os.path.join(home, "log")
         based = logd if os.path.dirname(fqfn) == "" else os.path.dirname(fqfn)
