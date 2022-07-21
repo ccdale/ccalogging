@@ -117,6 +117,6 @@ def rotateNext(logd, basefn, xnext):
 log = logging.getLogger("ccalogging")
 majorv = 0
 minorv = 4
-buildv = 2
+buildv = 3
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]
