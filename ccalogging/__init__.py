@@ -105,10 +105,10 @@ def doRotation(fqfn, rotation):
 
 
 def rotateNext(logd, basefn, xnext):
-    srcfn = os.path.join(logd, basefn, f".{xnext}.gz")
+    srcfn = os.path.join(logd, f"{basefn}.{xnext}.gz")
     if os.path.exists(srcfn):
         xnext = xnext + 1
-        destfn = os.path.join(logd, basefn, f".{xnext}.gz")
+        destfn = os.path.join(logd, f"{basefn}.{xnext}.gz")
         if os.path.exists(destfn):
             os.unlink(destfn)
         os.rename(srcfn, destfn)
@@ -117,6 +117,6 @@ def rotateNext(logd, basefn, xnext):
 log = logging.getLogger("ccalogging")
 majorv = 0
 minorv = 4
-buildv = 3
+buildv = 4
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]
