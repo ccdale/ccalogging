@@ -76,8 +76,5 @@ def toggle():
 
 
 log = logging.getLogger("ccalogging")
-majorv = 0
-minorv = 4
-buildv = 0
-__version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
-__version_info__ = [majorv, minorv, buildv]
+
+__version__ = "0.4.2"
