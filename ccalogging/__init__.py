@@ -20,19 +20,28 @@
 import sys
 import logging
 
+
 def setDebug():
     log.setLevel(logging.DEBUG)
+
 
 def setInfo():
     log.setLevel(logging.INFO)
 
+
 def setWarn():
     log.setLevel(logging.WARNING)
+
 
 def setError():
     log.setLevel(logging.ERROR)
 
-def setLogFile(fqfn, fformat="%(asctime)s [%(levelname)-5.5s]  %(message)s", datefmt="%d/%m/%Y %H:%M:%S"):
+
+def setLogFile(
+    fqfn,
+    fformat="%(asctime)s [%(levelname)-5.5s]  %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+):
     """
     sets log output to go to a file
     """
@@ -41,7 +50,12 @@ def setLogFile(fqfn, fformat="%(asctime)s [%(levelname)-5.5s]  %(message)s", dat
     fileH.setFormatter(ffmt)
     log.addHandler(fileH)
 
-def setConsoleOut(STDOUT=False, cformat="%(asctime)s [%(levelname)-5.5s]  %(message)s", datefmt="%d/%m/%Y %H:%M:%S"):
+
+def setConsoleOut(
+    STDOUT=False,
+    cformat="%(asctime)s [%(levelname)-5.5s]  %(message)s",
+    datefmt="%d/%m/%Y %H:%M:%S",
+):
     """
     sets log output to goto the console (stderr by default)
     """
@@ -53,9 +67,17 @@ def setConsoleOut(STDOUT=False, cformat="%(asctime)s [%(levelname)-5.5s]  %(mess
     consH.setFormatter(cfmt)
     log.addHandler(consH)
 
+
+def toggle():
+    if log.getEffectiveLevel() == logging.DEBUG:
+        setInfo()
+    else:
+        setDebug()
+
+
 log = logging.getLogger("ccalogging")
 majorv = 0
-minorv = 3
-buildv = 3
+minorv = 4
+buildv = 0
 __version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
 __version_info__ = [majorv, minorv, buildv]
