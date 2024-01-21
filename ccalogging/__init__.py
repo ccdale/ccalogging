@@ -114,9 +114,13 @@ def rotateNext(logd, basefn, xnext):
         os.rename(srcfn, destfn)
 
 
+def toggle():
+    if log.getEffectiveLevel() == logging.DEBUG:
+        setInfo()
+    else:
+        setDebug()
+
+
 log = logging.getLogger("ccalogging")
-majorv = 0
-minorv = 4
-buildv = 4
-__version__ = str(majorv) + "." + str(minorv) + "." + str(buildv)
-__version_info__ = [majorv, minorv, buildv]
+
+__version__ = "0.5.3"
