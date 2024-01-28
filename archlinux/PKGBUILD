@@ -1,0 +1,37 @@
+# Maintainer: Chris Allison <chris.charles.allison+ccalogging@gmail.com>
+_pkgname=ccalogging-git
+pkgname=python-ccalogging
+pkgver=0.5.3
+pkgrel=4
+pkgdesc="A simple logging library for python"
+arch=('any')
+url="https://github.com/ccdale/ccalogging"
+license=('GPL')
+makedepends=('git' 'python-build' 'python-installer' 'python-poetry-core')
+provides=("${_pkgname%-git}")
+conflicts=("${_pkgname%-git}")
+source=("git+file:///home/chris/src/ccalogging#branch=master")
+md5sums=('SKIP')
+
+prepare() {
+    xdirs=(src pkg)
+    for xdir in "${xdirs[@]}"; do
+        [ -d "$xdir" ] && rm -rvf "$xdir"
+    done
+    rm -vf *tar.zst
+}
+
+pkgver() {
+    read xname xversion < <(poetry version)
+    printf "%s" "${xversion}"
+}
+
+build() {
+	cd "$srcdir/${_pkgname%-git}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+	cd "$srcdir/${_pkgname%-git}"
+    python -m installer --destdir="$pkgdir" dist/*.whl
+}
