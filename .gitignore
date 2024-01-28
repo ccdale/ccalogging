@@ -5,3 +5,7 @@ build/
 tags
 dist/
 *.egg-info/
+archlinux/src
+archlinux/pkg
+archlinux/ccalogging
+archlinux/*tar.zst

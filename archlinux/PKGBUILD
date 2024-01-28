@@ -13,13 +13,6 @@ conflicts=("${_pkgname%-git}")
 source=("git+file:///home/chris/src/ccalogging#branch=master")
 md5sums=('SKIP')
 
-prepare() {
-    xdirs=(src pkg)
-    for xdir in "${xdirs[@]}"; do
-        [ -d "$xdir" ] && rm -rvf "$xdir"
-    done
-    rm -vf *tar.zst
-}
 
 pkgver() {
     read xname xversion < <(poetry version)
