@@ -1,8 +1,8 @@
 # Maintainer: Chris Allison <chris.charles.allison+ccalogging@gmail.com>
 _pkgname=ccalogging-git
 pkgname=python-ccalogging
-pkgver=0.5.3
-pkgrel=4
+pkgver=0.5.4
+pkgrel=1
 pkgdesc="A simple logging library for python"
 arch=('any')
 url="https://github.com/ccdale/ccalogging"
