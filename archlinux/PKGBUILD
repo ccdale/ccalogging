@@ -5,12 +5,12 @@ pkgver=0.5.4
 pkgrel=1
 pkgdesc="A simple logging library for python"
 arch=('any')
-url="https://github.com/ccdale/ccalogging"
+url="https://github.com/ccdale/${_pkgname%-git}"
 license=('GPL')
 makedepends=('git' 'python-build' 'python-installer' 'python-poetry-core')
 provides=("${_pkgname%-git}")
 conflicts=("${_pkgname%-git}")
-source=("git+file:///home/chris/src/ccalogging#branch=master")
+source=("git+file:///${HOME}/src/${_pkgname%-git}#branch=master")
 md5sums=('SKIP')
 
 
