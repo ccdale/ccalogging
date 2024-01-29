@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ccalogging"
-version = "0.5.6"
+version = "0.5.7"
 description = "Simple logging"
 authors = ["ccdale <chris.charles.allison+ccalogging@gmail.com>"]
 license = "GPL 3"
